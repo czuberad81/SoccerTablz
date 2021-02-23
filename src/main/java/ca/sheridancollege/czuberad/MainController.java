@@ -5,14 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import java.lang.Long;
+import java.lang.String;
 
 @Controller
 public class MainController {
 
     @Autowired
     DatabaseAccess da;
+    ModelAndView mv;
 
     @GetMapping("/")
     public String home(){
@@ -28,8 +32,10 @@ public class MainController {
     public String edit(){
         return "edit";
     }
-    @GetMapping("/deleteTeam")
-    public String delete(){
+    @GetMapping("/delete")
+    public String delete(Model model){
+
+        model.addAttribute("deleteTeam",da.getTeams());
         return "delete";
     }
     @GetMapping("/displayTeam")
@@ -46,6 +52,13 @@ public class MainController {
     public String insertTeam(@ModelAttribute Team team){
         da.insertTeam(team.getTeamName(),team.getContinent(),team.getPlayed(),team.getWon(),team.getDrawn(),team.getLost());
         return "add";
+    }
+    @GetMapping("/deleteTeamById/{teamID}")
+    public ModelAndView deleteTeam(@PathVariable Long teamID){
+        da.deleteTeamById(teamID);
+        mv = new ModelAndView("redirect:/delete","deleteTeam",da.getTeams());
+        return mv;
+
     }
 
 

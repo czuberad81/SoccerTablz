@@ -8,9 +8,25 @@
     <a th:href="@{backHome}">HOME</a>
     <a th:href="@{addTeam}">ADD TEAM</a>
     <a th:href="@{editTeam}">EDIT TEAM</a>
-    <a th:href="@{deleteTeam}">DELETE TEAM</a>
+    <a th:href="@{delete}">DELETE TEAM</a>
     <a th:href="@{displayTeam}">DISPLAY TEAMS</a>
 
 <h1>Delete page</h1>
+    <table>
+        <tr><th>Team Name</th><th>Continent</th><th>Played</th><th>Won</th><th>Drawn</th><th>Lost</th><th>Points</th></tr>
+
+        <th:block th:each="d:${deleteTeam}">
+            <tr>
+                <td th:text="${d.teamName}"></td>
+                <td th:text="${d.continent}"></td>
+                <td th:text="${d.played}"></td>
+                <td th:text="${d.won}"></td>
+                <td th:text="${d.drawn}"></td>
+                <td th:text="${d.lost}"></td>
+                <td><a th:href="@{'deleteTeamById/'+${d.teamID}}">DELETE</a></td>
+            </tr>
+
+        </th:block>
+    </table>
 </body>
 </html>

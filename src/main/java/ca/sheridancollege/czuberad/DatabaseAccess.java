@@ -31,4 +31,13 @@ public class DatabaseAccess {
         String query = "SELECT * FROM teams";
         return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
     }
+
+    public void deleteTeamById(Long teamID){
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "DELETE FROM teams WHERE TeamID = :teamID";
+        namedParameters.addValue("teamID", teamID);
+        jdbc.update(query,namedParameters);
+    }
+
+
 }
