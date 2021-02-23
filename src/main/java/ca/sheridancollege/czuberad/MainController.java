@@ -33,7 +33,8 @@ public class MainController {
         return "delete";
     }
     @GetMapping("/displayTeam")
-    public String display(){
+    public String display(Model model){
+        model.addAttribute("display",da.getTeams());
         return "display";
     }
     @GetMapping("/backHome")
@@ -45,8 +46,10 @@ public class MainController {
     public String insertTeam(@ModelAttribute Team team){
         da.insertTeam(team.getTeamName(),team.getContinent(),team.getPlayed(),team.getWon(),team.getDrawn(),team.getLost());
         return "add";
-
     }
+
+
+
 
 
 

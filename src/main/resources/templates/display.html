@@ -11,5 +11,19 @@
     <a th:href="@{deleteTeam}">DELETE TEAM</a>
     <a th:href="@{displayTeam}">DISPLAY TEAMS</a>
 <h1>Display page</h1>
+    <table>
+        <tr><th>Team Name</th><th>Continent</th><th>Played</th><th>Won</th><th>Drawn</th><th>Lost</th><th>Points</th></tr>
+        <th:block th:each="d:${display}">
+            <tr>
+                <td th:text="${d.teamName}"></td>
+                <td th:text="${d.continent}"></td>
+                <td th:text="${d.played}"></td>
+                <td th:text="${d.won}"></td>
+                <td th:text="${d.drawn}"></td>
+                <td th:text="${d.lost}"></td>
+            </tr>
+
+        </th:block>
+    </table>
 </body>
 </html>
