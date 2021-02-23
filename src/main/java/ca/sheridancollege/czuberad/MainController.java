@@ -28,8 +28,9 @@ public class MainController {
         model.addAttribute("team", new Team());
         return "add";
     }
-    @GetMapping("/editTeam")
-    public String edit(){
+    @GetMapping("/edit")
+    public String edit(Model model){
+        model.addAttribute("editTeam",da.getTeams());
         return "edit";
     }
     @GetMapping("/delete")
@@ -59,6 +60,22 @@ public class MainController {
         mv = new ModelAndView("redirect:/delete","deleteTeam",da.getTeams());
         return mv;
 
+    }
+
+    @GetMapping("/updateTeamById/{teamID}")
+    public ModelAndView updateTeam(@PathVariable Long teamID){
+        Team team;
+        team = da.getTeamById(teamID).get(0);
+        mv = new ModelAndView("updatePage","updateTeam",da.getTeams());
+        mv.addObject("team",team);
+        return mv;
+    }
+
+    @PostMapping("/editTeam")
+    public ModelAndView editTeam(@ModelAttribute Team team){
+        da.updateTeamById(team);
+        mv = new ModelAndView("redirect:/edit","team",da.getTeams());
+        return mv;
     }
 
 
