@@ -15,14 +15,22 @@
         <form method="post" th:action="@{/insertTeam}" th:object="${team}">
             <input type="hidden" th:field="*{teamID}">
             <input type="text"  th:field="*{teamName}"><br>
-            <input type="text"  th:field="*{continent}"><br>
+            <select th:field="*{continent}">
+                <option th:value="Europe">Europe</option>
+                <option th:value="Antarctica">Antarctica</option>
+                <option th:value="S.America">S.America</option>
+                <option th:value="N.America">N.America</option>
+                <option th:value="Asia">Asia</option>
+                <option th:value="Africa">Africa</option>
+                <option th:value="Oceania">Oceania</option>
+            </select><br>
+
             <input type="text"  th:field="*{played}"><br>
             <input type="text"  th:field="*{won}"><br>
             <input type="text"  th:field="*{drawn}"><br>
             <input type="text"  th:field="*{lost}"><br>
             <input type="submit" value="Add Team">
         </form>
-
     </div>
 </body>
 </html>

@@ -22,6 +22,7 @@
                 <td th:text="${e.won}"></td>
                 <td th:text="${e.drawn}"></td>
                 <td th:text="${e.lost}"></td>
+                <td th:text="${e.won*3 + e.drawn}"></td>
                 <td><a th:href="@{'updateTeamById/'+${e.teamID}}">EDIT TEAM</a></td>
             </tr>
 

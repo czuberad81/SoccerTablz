@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{style.css}">
 </head>
 <body>
-    <a th:href="@{backHome}">HOME</a>
-    <a th:href="@{addTeam}">ADD TEAM</a>
-    <a th:href="@{edit}">EDIT TEAM</a>
-    <a th:href="@{delete}">DELETE TEAM</a>
-    <a th:href="@{displayTeam}">DISPLAY TEAMS</a>
-<h1>Home Page</h1>
-
+<header>
+    <div>
+        <a th:href="@{backHome}">HOME</a>
+        <a th:href="@{addTeam}">ADD TEAM</a>
+        <a th:href="@{edit}">EDIT TEAM</a>
+        <a th:href="@{delete}">DELETE TEAM</a>
+        <a th:href="@{displayTeam}">DISPLAY TEAMS</a>
+    </div>
+</header>
 </body>
 </html>
