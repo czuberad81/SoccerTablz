@@ -15,7 +15,7 @@
     <table>
         <tr><th>Team Name</th><th>Continent</th><th>Played</th><th>Won</th><th>Drawn</th><th>Lost</th><th>Points</th></tr>
 
-        <th:block th:each="d:${deleteTeam}">
+        <th:block th:each="d:${display}">
             <tr>
                 <td th:text="${d.teamName}"></td>
                 <td th:text="${d.continent}"></td>
@@ -29,5 +29,9 @@
 
         </th:block>
     </table>
+    <form th:action="@{/search}" method="get">
+        <input type="text" name="searchedString">
+        <button type="submit">Search</button>
+    </form>
 </body>
 </html>

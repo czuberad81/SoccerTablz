@@ -23,8 +23,15 @@
                 <td th:text="${d.lost}"></td>
                 <td th:text="${d.won*3 + d.drawn}"></td>
             </tr>
-
         </th:block>
     </table>
+<form th:action="@{/sortTable}" method="post">
+    <input type="radio" name="option" value="points">Pts<br>
+    <input type="radio" name="option" value="name">Name<br>
+    <input type="radio" name="option" value="con">Continent<br>
+    <button type="submit">Sort</button>
+</form>
+
+
 </body>
 </html>

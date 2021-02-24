@@ -1,15 +1,16 @@
 package ca.sheridancollege.czuberad;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.swing.text.html.Option;
 import java.lang.Long;
 import java.lang.String;
+import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -30,13 +31,12 @@ public class MainController {
     }
     @GetMapping("/edit")
     public String edit(Model model){
-        model.addAttribute("editTeam",da.getTeams());
+        model.addAttribute("display",da.getTeams());
         return "edit";
     }
     @GetMapping("/delete")
-    public String delete(Model model){
-
-        model.addAttribute("deleteTeam",da.getTeams());
+    public String delete(Model model) {
+        model.addAttribute("display", da.getTeams());
         return "delete";
     }
     @GetMapping("/displayTeam")
@@ -57,7 +57,7 @@ public class MainController {
     @GetMapping("/deleteTeamById/{teamID}")
     public ModelAndView deleteTeam(@PathVariable Long teamID){
         da.deleteTeamById(teamID);
-        mv = new ModelAndView("redirect:/delete","deleteTeam",da.getTeams());
+        mv = new ModelAndView("redirect:/delete","display",da.getTeams());
         return mv;
 
     }
@@ -66,7 +66,7 @@ public class MainController {
     public ModelAndView updateTeam(@PathVariable Long teamID){
         Team team;
         team = da.getTeamById(teamID).get(0);
-        mv = new ModelAndView("updatePage","updateTeam",da.getTeams());
+        mv = new ModelAndView("updatePage","display",da.getTeams());
         mv.addObject("team",team);
         return mv;
     }
@@ -74,13 +74,26 @@ public class MainController {
     @PostMapping("/editTeam")
     public ModelAndView editTeam(@ModelAttribute Team team){
         da.updateTeamById(team);
-        mv = new ModelAndView("redirect:/edit","team",da.getTeams());
+        mv = new ModelAndView("redirect:/edit","display",da.getTeams());
         return mv;
     }
-
-
-
-
-
+    @GetMapping("/search")
+    public ModelAndView searchDB(@RequestParam String searchedString){
+        if(searchedString != null){
+            mv = new ModelAndView("/delete","display",da.getTeamBySearch(searchedString));
+        }
+        else{
+            mv = new ModelAndView("/delete","display",da.getTeams());
+        }
+        return mv;
+    }
+    @PostMapping("/sortTable")
+    public ModelAndView sortDB(@RequestParam String option){
+        if(option.equals("points")){
+            mv = new ModelAndView("redirect:/displayTeam","display",da.getTeamsByPoints());
+            //model.addAttribute("display",da.getTeamsByPoints());
+        }
+        return mv;
+    }
 
 }

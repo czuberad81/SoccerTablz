@@ -1,12 +1,14 @@
 package ca.sheridancollege.czuberad;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class DatabaseAccess {
@@ -29,6 +31,18 @@ public class DatabaseAccess {
     public List<Team> getTeams(){
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         String query = "SELECT * FROM teams";
+        return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
+    }
+    public List<Team> getTeamsByPoints(){
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "SELECT * FROM teams ORDER BY(Won * 3 + Drawn)DESC";
+        return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
+    }
+
+    public List<Team> getTeamBySearch(String searchedString){
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "SELECT * FROM teams WHERE TeamName like :searchedString OR Continent LIKE :searchedString";
+        namedParameters.addValue("searchedString","%"+searchedString+"%");
         return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
     }
 
