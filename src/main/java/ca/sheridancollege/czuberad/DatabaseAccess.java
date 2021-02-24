@@ -38,6 +38,16 @@ public class DatabaseAccess {
         String query = "SELECT * FROM teams ORDER BY(Won * 3 + Drawn)DESC";
         return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
     }
+    public List<Team> getTeamsByName(){
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "SELECT * FROM teams ORDER BY TeamName ASC";
+        return jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
+    }
+    public List<Team> getTeamsByCon(){
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        String query = "SELECT * FROM teams ORDER BY Continent ASC";
+        return  jdbc.query(query,namedParameters,new BeanPropertyRowMapper<Team>(Team.class));
+    }
 
     public List<Team> getTeamBySearch(String searchedString){
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();

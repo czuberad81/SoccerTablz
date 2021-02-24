@@ -87,11 +87,16 @@ public class MainController {
         }
         return mv;
     }
-    @PostMapping("/sortTable")
+    @GetMapping("/sortTable")
     public ModelAndView sortDB(@RequestParam String option){
         if(option.equals("points")){
-            mv = new ModelAndView("redirect:/displayTeam","display",da.getTeamsByPoints());
-            //model.addAttribute("display",da.getTeamsByPoints());
+            mv = new ModelAndView("/display","display",da.getTeamsByPoints());
+        }
+        else if(option.equals("name")){
+            mv = new ModelAndView("/display","display",da.getTeamsByName());
+        }
+        else if(option.equals("con")){
+            mv = new ModelAndView("/display","display",da.getTeamsByCon());
         }
         return mv;
     }

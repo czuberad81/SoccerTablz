@@ -25,8 +25,8 @@
             </tr>
         </th:block>
     </table>
-<form th:action="@{/sortTable}" method="post">
-    <input type="radio" name="option" value="points">Pts<br>
+<form th:action="@{/sortTable}" method="get">
+    <input type="radio" name="option" value="points" checked>Pts<br>
     <input type="radio" name="option" value="name">Name<br>
     <input type="radio" name="option" value="con">Continent<br>
     <button type="submit">Sort</button>
