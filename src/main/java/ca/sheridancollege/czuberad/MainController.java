@@ -77,8 +77,8 @@ public class MainController {
         mv = new ModelAndView("redirect:/edit","display",da.getTeams());
         return mv;
     }
-    @GetMapping("/search")
-    public ModelAndView searchDB(@RequestParam String searchedString){
+    @GetMapping("/searchD")
+    public ModelAndView deleteSearchDB(@RequestParam String searchedString){
         if(searchedString != null){
             mv = new ModelAndView("/delete","display",da.getTeamBySearch(searchedString));
         }
@@ -87,6 +87,17 @@ public class MainController {
         }
         return mv;
     }
+    @GetMapping("/searchE")
+    public ModelAndView editSearchDB(@RequestParam String searchedString){
+        if(searchedString != null){
+            mv = new ModelAndView("/edit","display",da.getTeamBySearch(searchedString));
+        }
+        else{
+            mv = new ModelAndView("/edit","display",da.getTeams());
+        }
+        return mv;
+    }
+
     @GetMapping("/sortTable")
     public ModelAndView sortDB(@RequestParam String option){
         if(option.equals("points")){
