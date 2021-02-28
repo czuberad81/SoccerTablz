@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{style.css}">
 </head>
-<body>
-<div>
-    <form method="post" th:action="@{/editTeam}" th:object="${team}">
+<body class="update_background">
+<div class="form_center" th:align="center">
+    <form class="add_form" method="post" th:action="@{/editTeam}" th:object="${team}">
         <input type="hidden" th:field="*{teamID}">
         <input type="text"  th:field="*{teamName}"><br>
         <select th:field="*{continent}">
@@ -24,8 +25,11 @@
         <input type="text"  th:field="*{lost}"><br>
         <input type="submit" value="Update Team">
     </form>
-
 </div>
-
+<footer>
+    <div>
+        © 2021 by Adam Czubernat All rights reserved.
+    </div>
+</footer>
 </body>
 </html>

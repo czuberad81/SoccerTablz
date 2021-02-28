@@ -5,15 +5,25 @@
     <title>Title</title>
     <link rel="stylesheet" th:href="@{style.css}">
 </head>
-<body>
+<body class="home_background">
 <header>
-    <div>
-        <a th:href="@{backHome}">HOME</a>
-        <a th:href="@{addTeam}">ADD TEAM</a>
-        <a th:href="@{edit}">EDIT TEAM</a>
-        <a th:href="@{delete}">DELETE TEAM</a>
-        <a th:href="@{displayTeam}">DISPLAY TEAMS</a>
+    <div class="wrapper">
+        <img th:src="@{'fifa_logo.png'}" class="logo">
+        <nav>
+            <ul>
+                <li><a th:href="@{backHome}">HOME</a></li>
+                <li><a th:href="@{addTeam}">ADD TEAM</a></li>
+                <li><a th:href="@{edit}">EDIT TEAM</a></li>
+                <li><a th:href="@{delete}">DELETE TEAM</a></li>
+                <li><a th:href="@{displayTeam}">DISPLAY TEAMS</a></li>
+            </ul>
+        </nav>
     </div>
 </header>
+<footer>
+    <div>
+        © 2021 by Adam Czubernat All rights reserved.
+    </div>
+</footer>
 </body>
 </html>

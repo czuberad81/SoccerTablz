@@ -3,34 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{style.css}">
 </head>
-<body>
-    <a th:href="@{backHome}">HOME</a>
-    <a th:href="@{addTeam}">ADD TEAM</a>
-    <a th:href="@{edit}">EDIT TEAM</a>
-    <a th:href="@{delete}">DELETE TEAM</a>
-    <a th:href="@{displayTeam}">DISPLAY TEAMS</a>
-<h1>Add page</h1>
-    <div>
-        <form method="post" th:action="@{/insertTeam}" th:object="${team}">
-            <input type="hidden" th:field="*{teamID}">
-            <input type="text"  th:field="*{teamName}"><br>
-            <select th:field="*{continent}">
-                <option th:value="Europe">Europe</option>
-                <option th:value="Antarctica">Antarctica</option>
-                <option th:value="S.America">S.America</option>
-                <option th:value="N.America">N.America</option>
-                <option th:value="Asia">Asia</option>
-                <option th:value="Africa">Africa</option>
-                <option th:value="Oceania">Oceania</option>
-            </select><br>
-
-            <input type="text"  th:field="*{played}"><br>
-            <input type="text"  th:field="*{won}"><br>
-            <input type="text"  th:field="*{drawn}"><br>
-            <input type="text"  th:field="*{lost}"><br>
-            <input type="submit" value="Add Team">
-        </form>
+<body class="add_background">
+<header>
+    <div class="wrapper">
+        <img th:src="@{'fifa_logo.png'}" class="logo">
+        <nav>
+            <ul>
+                <li><a th:href="@{backHome}">HOME</a></li>
+                <li><a th:href="@{addTeam}">ADD TEAM</a></li>
+                <li><a th:href="@{edit}">EDIT TEAM</a></li>
+                <li><a th:href="@{delete}">DELETE TEAM</a></li>
+                <li><a th:href="@{displayTeam}">DISPLAY TEAMS</a></li>
+            </ul>
+        </nav>
     </div>
+</header>
+<div class="form_center" th:align="center">
+    <form class="add_form" method="post" th:action="@{/insertTeam}" th:object="${team}">
+        <input type="hidden" th:field="*{teamID}">
+        <p>Team Name</p>
+        <input type="text"  th:field="*{teamName}" placeholder="Enter Team Name"><br>
+        <p>Continent</p>
+        <select th:field="*{continent}">
+            <option th:value="Europe">Europe</option>
+            <option th:value="Antarctica">Antarctica</option>
+            <option th:value="S.America">S.America</option>
+            <option th:value="N.America">N.America</option>
+            <option th:value="Asia">Asia</option>
+            <option th:value="Africa">Africa</option>
+            <option th:value="Oceania">Oceania</option>
+        </select><br>
+        <p>Games Played</p>
+        <input type="number"  th:field="*{played}" placeholder="Enter games played" min="0"><br>
+        <p>Games Won</p>
+        <input type="number"  th:field="*{won}" min="0" placeholder="Enter games won"><br>
+        <p>Games Drawn</p>
+        <input type="number"  th:field="*{drawn}" min="0" placeholder="Enter games drawn"><br>
+        <p>Games Lost</p>
+        <input type="number"  th:field="*{lost}" min="0" placeholder="Enter games lost"><br>
+        <input type="submit" value="Add Team">
+    </form>
+</div>
+<footer>
+    <div>
+        © 2021 by Adam Czubernat All rights reserved.
+    </div>
+</footer>
 </body>
 </html>

@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{style.css}">
 </head>
-<body>
-    <a th:href="@{backHome}">HOME</a>
-    <a th:href="@{addTeam}">ADD TEAM</a>
-    <a th:href="@{edit}">EDIT TEAM</a>
-    <a th:href="@{delete}">DELETE TEAM</a>
-    <a th:href="@{displayTeam}">DISPLAY TEAMS</a>
-<h1>Display page</h1>
-    <table>
+<body class="display_background">
+<header>
+    <div class="wrapper">
+        <img th:src="@{'fifa_logo.png'}" class="logo">
+        <nav>
+            <ul>
+                <li><a th:href="@{backHome}">HOME</a></li>
+                <li><a th:href="@{addTeam}">ADD TEAM</a></li>
+                <li><a th:href="@{edit}">EDIT TEAM</a></li>
+                <li><a th:href="@{delete}">DELETE TEAM</a></li>
+                <li><a th:href="@{displayTeam}">DISPLAY TEAMS</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+    <table class="table_display">
         <tr><th>Team Name</th><th>Continent</th><th>Played</th><th>Won</th><th>Drawn</th><th>Lost</th><th>Points</th></tr>
         <th:block th:each="d:${display}">
             <tr>
@@ -25,13 +34,17 @@
             </tr>
         </th:block>
     </table>
-<form th:action="@{/sortTable}" method="get">
+<form class="display_form" th:action="@{/sortTable}" method="get">
     <input type="radio" name="option" value="points" checked>Pts<br>
     <input type="radio" name="option" value="name">Name<br>
     <input type="radio" name="option" value="con">Continent<br>
     <button type="submit">Sort</button>
 </form>
-
+<footer>
+    <div>
+        © 2021 by Adam Czubernat All rights reserved.
+    </div>
+</footer>
 
 </body>
 </html>
